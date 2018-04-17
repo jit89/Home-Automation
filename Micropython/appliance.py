@@ -12,13 +12,13 @@ class Device(object):
             self._input_pin = _input_pin
             self._input_pin.init(mode=machine.Pin.IN)
         else:
-            raise Exception("Expected param 1 to be of type machine.Pin but got type {}".format(type(_input_pin)))
+            raise TypeError("Expected argument 1 to be of type machine.Pin but got type {}".format(type(_input_pin)))
 
         if isinstance(_output_pin, machine.Pin):
             self._output_pin = _output_pin
             self._output_pin.init(mode=machine.Pin.OUT)
         else:
-            raise Exception("Expected param 2 to be of type machine.Pin but got type {}".format(type(_output_pin)))
+            raise TypeError("Expected argument 2 to be of type machine.Pin but got type {}".format(type(_output_pin)))
 
         self._data = bytearray(24)
         self._current_pos = 0
