@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/grad1"
+    tools:context="com.example.rak3sh.smarthome_app.MainActivity">
+
+
+    <LinearLayout
+        android:id="@+id/linearHor1"
+        android:layout_width="0dp"
+        android:layout_height="148dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="#028479"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.110000014"
+        tools:ignore="DisableBaselineAlignment,MissingConstraints,UselessLeaf">
+
+        <LinearLayout
+            android:id="@+id/topHSub1"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.73"
+            android:background="@drawable/grad1"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/imButton1"
+                style="@android:style/Widget.Material.Light.ImageButton"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:adjustViewBounds="false"
+                android:background="@color/colorPrimary"
+                android:contentDescription=""
+                android:cropToPadding="false"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
+                app:srcCompat="@drawable/fan_logo1"
+                tools:ignore="ContentDescription,InefficientWeight,NestedWeights" />
+
+            <TextView
+                android:id="@+id/appText1"
+                android:layout_width="181dp"
+                android:layout_height="25dp"
+                android:layout_weight="0.59"
+                android:lineSpacingExtra="8sp"
+                android:text="@string/app1Text"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="InefficientWeight,NestedWeights"
+                tools:layout_editor_absoluteX="243dp"
+                tools:layout_editor_absoluteY="395dp" />
+
+            <SeekBar
+                android:id="@+id/seekBar1"
+                style="@android:style/Widget.Material.SeekBar"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:progressBackgroundTint="#e0e549"
+                android:thumbTint="#c9efe5"
+                android:visibility="visible" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/hopHSub2"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.30"
+            android:background="@drawable/grad1"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ImageButton
+                android:id="@+id/imButton2"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:background="@color/colorAccent"
+                android:elevation="0dp"
+                android:scaleType="fitCenter"
+                android:visibility="visible"
+                app:srcCompat="@drawable/light_logo"
+                tools:ignore="ContentDescription,InefficientWeight,NestedWeights" />
+
+            <TextView
+                android:id="@+id/appText2"
+                android:layout_width="181dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.64"
+                android:lineSpacingExtra="8sp"
+                android:text="Light"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,InefficientWeight,NestedWeights" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearHor2"
+        android:layout_width="0dp"
+        android:layout_height="148dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorAccent"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        android:weightSum="1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.47000003">
+
+        <LinearLayout
+            android:id="@+id/botHSub1"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"
+            android:background="@drawable/grad1"
+            android:orientation="vertical"
+            android:weightSum="1"
+            tools:ignore="InefficientWeight,UselessLeaf">
+
+            <ImageButton
+                android:id="@+id/imButton3"
+                android:layout_width="match_parent"
+                android:layout_height="97dp"
+                android:background="@color/colorAccent"
+                android:elevation="0dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/light_logo"
+                tools:ignore="ContentDescription,NestedWeights" />
+
+            <TextView
+                android:id="@+id/appText3"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_weight="0.62"
+                android:lineSpacingExtra="8sp"
+                android:text="Light"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,NestedWeights" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/botHSub2"
+            android:layout_width="178dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/grad1"
+            android:orientation="vertical"
+            android:visibility="visible"
+            android:weightSum="1"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="8dp">
+
+            <ImageButton
+                android:id="@+id/imButton4"
+                android:layout_width="match_parent"
+                android:layout_height="89dp"
+                android:background="@color/colorPrimary"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/fan_logo1"
+                tools:ignore="ContentDescription,InefficientWeight" />
+
+            <TextView
+                android:id="@+id/appText4"
+                android:layout_width="181dp"
+                android:layout_height="25dp"
+                android:layout_weight="0.44"
+                android:lineSpacingExtra="8sp"
+                android:text="Fan"
+                android:textAlignment="center"
+                android:textColor="@android:color/background_light"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,InefficientWeight" />
+
+            <SeekBar
+                android:id="@+id/seekBar2"
+                android:layout_width="175dp"
+                android:layout_height="wrap_content"
+                android:progressBackgroundTint="#e0e549"
+                android:thumbTint="#c9efe5" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/topLL"
+        android:layout_width="376dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:background="#ceedde"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="MissingConstraints"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            app:srcCompat="@drawable/menu_logo"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="8sp"
+            android:text="SMART HOME"
+            android:textAlignment="center"
+            android:textColor="@android:color/background_dark"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:ignore="HardcodedText"
+            tools:layout_editor_absoluteX="72dp"
+            tools:layout_editor_absoluteY="46dp" />
+
+        <ImageButton
+            android:id="@+id/infoButton"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/colorAccent"
+            android:scaleType="fitCenter"
+            app:srcCompat="@drawable/info_logo"
+            tools:ignore="ContentDescription"
+            android:layout_weight="3.22" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/connectionCheckText"
+        android:layout_width="342dp"
+        android:layout_height="28dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:lineSpacingExtra="0sp"
+        android:textAlignment="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:typeface="normal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="HardcodedText,SmallSp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp" />
+
+</android.support.constraint.ConstraintLayout>
