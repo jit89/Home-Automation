@@ -8,10 +8,7 @@ class timed(object):
     """
 
     def __init__(self, interval):
-        """
-
-        :type interval: time.time() object
-        """
+        
         self.interval = interval
         if not isinstance(interval, float) or not isinstance(interval, int):
             raise TypeError("Expected argument to be of type int or float but got type {}".format(type(interval)))
@@ -27,7 +24,7 @@ class timed(object):
 
 
 class FM24CL16B(object):
-    """Driver class for FM24CL16B-G 2 x 8kb RRAM
+    """Driver class for FM24CL16B-G 2 x 8kb FRAM
     """
 
     def __init__(self):
