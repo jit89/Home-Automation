@@ -37,17 +37,31 @@ public class MainActivity extends AppCompatActivity {
     //// TODO: 4/16/2018 onstart status changes
 
 
-    boolean imButtonStat1 = false;         //ButtonState for on off checking
-    boolean imButtonStat2=false;
-    boolean imButtonStat3= false;
-    boolean imButtonStat4=false;
+    boolean imButtonStat11 = false;         //ButtonState for on off checking
+    boolean imButtonStat21=false;
+    boolean imButtonStat31= false;
+    boolean imButtonStat41=false;
+    boolean imButtonStat12 = false;         //ButtonState for on off checking
+    boolean imButtonStat22=false;
+    boolean imButtonStat32= false;
+    boolean imButtonStat42=false;
+    boolean imButtonStat13 = false;         //ButtonState for on off checking
+    boolean imButtonStat23=false;
+    boolean imButtonStat33= false;
+    boolean imButtonStat43=false;
     
 
-    boolean app1, app2, app3, app4;         //bools for json
-    int seek = 0;
-    int seek2=0;
+    boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33,app43;         //bools for json
+    int seeka1= 0;
+    int seeka2=0;
+    int seeka3=0;
+    int seekb1=0;
+    int seekb2=0;
+    int seekb3=0;
+    int room=1;
 
-    ImageButton imageButton1,imageButton2,imageButton3,imageButton4,infoButton;
+
+    ImageButton imageButton1,imageButton2,imageButton3,imageButton4,infoButton,roomim1,roomim2,roomim3;
 
     TextView connectionCheckText;
     TextView appText1,appText2,appText3,appText4;
@@ -65,7 +79,10 @@ public class MainActivity extends AppCompatActivity {
         imageButton2 = (ImageButton) findViewById(R.id.imButton2);
         imageButton3 = (ImageButton) findViewById(R.id.imButton3);
         imageButton4 = (ImageButton) findViewById(R.id.imButton4);
-        infoButton=(ImageButton)findViewById(R.id.infoButton);
+        infoButton = (ImageButton) findViewById(R.id.infoButton);
+        roomim1 = (ImageButton) findViewById(R.id.imroomButton1);
+        roomim2 = (ImageButton) findViewById(R.id.imroomButton2);
+        roomim3 = (ImageButton) findViewById(R.id.imroomButton3);
 
         appText1 = (TextView) findViewById(R.id.appText1);
         appText2 = (TextView) findViewById(R.id.appText2);
@@ -76,14 +93,17 @@ public class MainActivity extends AppCompatActivity {
 
         seekbar1 = (SeekBar) findViewById(R.id.seekBar1);
         seekbar2 = (SeekBar) findViewById(R.id.seekBar2);
+
         //spinner2=(Spinner)findViewById(R.id.spinner2);
 
 
- //============================>>>>>>>>>>>info<<<<<<<<<<<<<<<==============================
+        roomim1.performClick();
+
+        //============================>>>>>>>>>>>info<<<<<<<<<<<<<<<==============================
         infoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent info=new Intent(MainActivity.this,NewActivity.class);
+                Intent info = new Intent(MainActivity.this, NewActivity.class);
                 startActivity(info);
             }
         });
@@ -93,24 +113,69 @@ public class MainActivity extends AppCompatActivity {
         imageButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(room==1) {
 
-                if (imButtonStat1 == false) {
-                    imButtonStat1 = true;
-                    // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
-                    seekbar1.setProgress(50);
-                    seek = 50;
-                    appText1.setText("FAN ON (50%)");
-                    app1 = true;
-                } else {
-                    imButtonStat1 = false;
-                    //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
-                    appText1.setText("FAN OFF");
-                    seekbar1.setProgress(0);
-                    seek = 0;
-                    app1 = false;
+                    if (imButtonStat11 == false) {
+                        imButtonStat11 = true;
+                        // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
+                        seekbar1.setProgress(50);
+                        seeka1 = 50;
+                        appText1.setText("FAN ON (50%)");
+                        app11 = true;
+                    } else {
+                        imButtonStat11 = false;
+                        //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
+                        appText1.setText("FAN OFF");
+                        seekbar1.setProgress(0);
+                        seeka1 = 0;
+                        app11 = false;
+                    }
+                    checkConnection();                //checking connection
+                    new postReq().execute();
                 }
-                checkConnection();                //checking connection
-                new postReq().execute();           //// TODO: 4/15/2018  add thread
+                else if(room==2){
+
+                    if (imButtonStat12 == false) {
+                        imButtonStat12 = true;
+                        // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
+                        seekbar1.setProgress(50);
+                        seeka2 = 50;
+                        appText1.setText("FAN ON (50%)");
+                        app12 = true;
+                    } else {
+                        imButtonStat12 = false;
+                        //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
+                        appText1.setText("FAN OFF");
+                        seekbar1.setProgress(0);
+                        seeka2 = 0;
+                        app12 = false;
+                    }
+                    checkConnection();                //checking connection
+                    new postReq().execute();
+                }
+                else if(room==3){
+                    if (imButtonStat13 == false) {
+                        imButtonStat13 = true;
+                        // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
+                        seekbar1.setProgress(50);
+                        seeka3 = 50;
+                        appText1.setText("FAN ON (50%)");
+                        app13 = true;
+                    } else {
+                        imButtonStat13 = false;
+                        //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
+                        appText1.setText("FAN OFF");
+                        seekbar1.setProgress(0);
+                        seeka3 = 0;
+                        app13 = false;
+                    }
+                    checkConnection();                //checking connection
+                    new postReq().execute();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Unexpected Error Occured",Toast.LENGTH_LONG).show();
+
+                }//// TODO: 4/15/2018  add thread
             }
         });
 
@@ -120,7 +185,11 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                seek = progress;
+                if(room==1){seeka1 = progress;}
+                else if(room==2){seeka2=progress;}
+                else if (room==3){seeka3=progress;}
+                else{Toast.makeText(getApplicationContext(),"Unexpected Error Occured",Toast.LENGTH_LONG).show();}
+
             }
 
             @Override
@@ -130,16 +199,34 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                new postReq().execute();                                 //// TODO: 4/15/2018  add thread
+                                               //// TODO: 4/15/2018  add thread
                 // Toast.makeText(getApplicationContext(),"speed is:"+seek+"%",Toast.LENGTH_SHORT).show();
-                if (seek != 0) {
-                    app1 = true;
-                    imButtonStat1 = true;
+                if(room==1){ if (seeka1 != 0) {
+                    app11 = true;
+                    imButtonStat11 = true;
                 }
+                    appText1.setText("FAN ON" + "(" + seeka1 + "%)");
+                }
+                else if(room==2){
+                    if (seeka2 != 0) {
+                        app12 = true;
+                        imButtonStat12 = true;
+                    }
+                    appText1.setText("FAN ON" + "(" + seeka2 + "%)");
+                }
+                else if(room==3){
+                    if (seeka3 != 0) {
+                        app13 = true;
+                        imButtonStat13 = true;
+                    }
+                    appText1.setText("FAN ON" + "(" + seeka3 + "%)");
+                }
+
                 checkConnection();
+                new postReq().execute();
 
 
-                appText1.setText("FAN ON" + "(" + seek + "%)");
+
             }
         });
         //=======================>>>>>>>>>>>>>>>>app2<<<<<<<<<<<<<<<====================================
@@ -152,19 +239,42 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(View v) {
 
                         checkConnection();
+                        if(room==1){
+                            if (imButtonStat21 == false) {
+                                imButtonStat21 = true;
+                                appText2.setText("Light ON");
+                                app21 = true;
+                            } else {
+                                imButtonStat21 = false;
+                                appText2.setText("Light OFF");
+                                app21 = false;
 
-
-                        if (imButtonStat2 == false) {
-                            imButtonStat2 = true;
+                            }
+                            new postReq().execute();
+                        }
+                        else if(room==2){ if (imButtonStat22 == false) {
+                            imButtonStat22 = true;
                             appText2.setText("Light ON");
-                            app2 = true;
+                            app22 = true;
                         } else {
-                            imButtonStat2 = false;
+                            imButtonStat22 = false;
                             appText2.setText("Light OFF");
-                            app2 = false;
+                            app22 = false;
 
                         }
-                        new postReq().execute();
+                            new postReq().execute();}
+                        else if(room==3){ if (imButtonStat23 == false) {
+                            imButtonStat23 = true;
+                            appText2.setText("Light ON");
+                            app23 = true;
+                        } else {
+                            imButtonStat23 = false;
+                            appText2.setText("Light OFF");
+                            app23 = false;
+
+                        }
+                            new postReq().execute();}
+
 
                     }
                 });
@@ -176,50 +286,120 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 checkConnection();
+                if(room==1){
+                    if (imButtonStat31 == false) {
+                        imButtonStat31 = true;
+                        appText3.setText("Light On");
+                        app31 = true;
+                    } else {
+                        imButtonStat31 = false;
+                        app31 = false;
+                        appText3.setText("Light OFF");
+                    }
+                    new postReq().execute();
+                }
+                else if(room==2){
 
-
-                if (imButtonStat3 == false) {
-                    imButtonStat3 = true;
+                    if (imButtonStat32 == false) {
+                        imButtonStat32 = true;
+                        appText3.setText("Light On");
+                        app32 = true;
+                    } else {
+                        imButtonStat32 = false;
+                        app32 = false;
+                        appText3.setText("Light OFF");
+                    }
+                    new postReq().execute();
+                }
+                else if(room==3){ if (imButtonStat33 == false) {
+                    imButtonStat33 = true;
                     appText3.setText("Light On");
-                    app3 = true;
+                    app33 = true;
                 } else {
-                    imButtonStat3 = false;
-                    app3 = false;
+                    imButtonStat33 = false;
+                    app33 = false;
                     appText3.setText("Light OFF");
                 }
-                new postReq().execute();
+                    new postReq().execute();}
+
+
+
+
                 //todo light2 logic
             }
         });
 
 //===================>>>>>>>>>>>>>>>>>app4<<<<<<<<<<<<<<<<<<<<<<<<==================================
-    imageButton4.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            checkConnection();
-            if (imButtonStat4 == false) {
-                imButtonStat4 = true;
-                // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
-                seekbar2.setProgress(50);
-                seek2 = 50;
-                appText4.setText("FAN ON (50%)");
-                app4 = true;
-            } else {
-                imButtonStat4 = false;
-                //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
-                appText4.setText("FAN OFF");
-                seekbar2.setProgress(0);
-                seek2 = 0;
-                app4 = false;
-            }
-            new postReq().execute();           //// TODO: 4/15/2018  add thread
+        imageButton4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkConnection();
+                if(room==1){if (imButtonStat41 == false) {
+                    imButtonStat41 = true;
+                    // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
+                    seekbar2.setProgress(50);
+                    seekb1 = 50;
+                    appText4.setText("FAN ON (50%)");
+                    app41 = true;
+                } else {
+                    imButtonStat41 = false;
+                    //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
+                    appText4.setText("FAN OFF");
+                    seekbar2.setProgress(0);
+                    seekb1 = 0;
+                    app41 = false;
+                }
+                new postReq().execute();}
+                else if(room==2){if (imButtonStat42 == false) {
+                    imButtonStat42 = true;
+                    // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
+                    seekbar2.setProgress(50);
+                    seekb2 = 50;
+                    appText4.setText("FAN ON (50%)");
+                    app42 = true;
+                } else {
+                    imButtonStat42 = false;
+                    //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
+                    appText4.setText("FAN OFF");
+                    seekbar2.setProgress(0);
+                    seekb2 = 0;
+                    app42 = false;
+                }
+                    new postReq().execute();}
+                else if(room==3){
+                    if (imButtonStat43 == false) {
+                        imButtonStat43 = true;
+                        // Toast.makeText(getApplicationContext(),"FAN ON",Toast.LENGTH_LONG).show();
+                        seekbar2.setProgress(50);
+                        seekb3 = 50;
+                        appText4.setText("FAN ON (50%)");
+                        app43 = true;
+                    } else {
+                        imButtonStat43 = false;
+                        //Toast.makeText(getApplicationContext(),"FAN OFF",Toast.LENGTH_LONG).show();
+                        appText4.setText("FAN OFF");
+                        seekbar2.setProgress(0);
+                        seekb3 = 0;
+                        app43 = false;
+                    }
+                    new postReq().execute();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),"Unexpected Error Occured",Toast.LENGTH_LONG);
 
-        }
-    });
+                }
+
+                           //// TODO: 4/15/2018  add thread
+
+            }
+        });
         seekbar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                seek2=progress;
+                if(room==1){seekb1 = progress;}
+                else if(room==2){seekb2 = progress;}
+                else if(room==3){seekb3 = progress;}
+
             }
 
             @Override
@@ -229,21 +409,116 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
-                if (seek != 0) {
+                checkConnection();
+                if(room==1){if (seekb1 != 0) {
                     checkConnection();
-                    app4 = true;
-                    imButtonStat4 = true;
+                    app41 = true;
+                    imButtonStat41 = true;
                 }
-                appText4.setText("FAN ON" + "(" + seek2 + "%)");
+                    appText4.setText("FAN ON" + "(" + seekb1 + "%)");}
+                else if(room==2){if (seekb2 != 0) {
+                    checkConnection();
+                    app42 = true;
+                    imButtonStat42 = true;
+                }
+                    appText4.setText("FAN ON" + "(" + seekb2 + "%)");}
+                else if(room==3){if (seekb3 != 0) {
+                    checkConnection();
+                    app43 = true;
+                    imButtonStat43 = true;
+                }
+                    appText4.setText("FAN ON" + "(" + seekb3 + "%)");}
+
                 new postReq().execute();
             }
         });
 
+
+        //=======================>>>>>>>>>>>>>room1<<<<<<<<<<<<<<<<<<<<<<==================================
+        roomim1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                room=1;
+                roomim1.setBackgroundColor(0xFF6daf8f);
+                roomim2.setBackgroundColor(0xFF3eb291);
+                roomim3.setBackgroundColor(0xFF3eb291);
+
+                if(app11){appText1.setText("FAN ON" + "(" + seeka1 + "%)");
+                seekbar1.setProgress(seeka1);}
+                else{appText1.setText("FAN OFF");
+                seekbar1.setProgress(0);}
+
+                if(app21){appText2.setText("LIGHT ON");}
+                else{appText2.setText("LIGHT OFF");}
+
+                if(app31){appText3.setText("LIGHT ON");}
+                else{appText3.setText("LIGHT OFF");}
+
+                if(app41){appText4.setText("FAN ON" + "(" + seekb1 + "%)");
+                seekbar2.setProgress(seekb1);}
+                else{appText4.setText("FAN OFF");
+                seekbar2.setProgress(0);}
+
+
+            }
+        });
+
+        roomim2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                room=2;
+                roomim2.setBackgroundColor(0xFF6daf8f);
+                roomim1.setBackgroundColor(0xFF3eb291);
+                roomim3.setBackgroundColor(0xFF3eb291);
+
+                if(app12){appText1.setText("FAN ON" + "(" + seeka2 + "%)");
+                seekbar1.setProgress(seeka2);}
+                else{appText1.setText("FAN OFF");
+                seekbar1.setProgress(0);}
+
+                if(app22){appText2.setText("LIGHT ON");}
+                else{appText2.setText("LIGHT OFF");}
+
+                if(app32){appText3.setText("LIGHT ON");}
+                else{appText3.setText("LIGHT OFF");}
+
+                if(app42){appText4.setText("FAN ON" + "(" + seekb2 + "%)");
+                seekbar2.setProgress(seekb2);}
+                else{appText4.setText("FAN OFF");
+                seekbar2.setProgress(0);}
+
+
+            }
+        });
+        roomim3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                room=3;
+                roomim3.setBackgroundColor(0xFF6daf8f);
+                roomim1.setBackgroundColor(0xFF3eb291);
+                roomim2.setBackgroundColor(0xFF3eb291);
+
+                if(app13){appText1.setText("FAN ON" + "(" + seeka3 + "%)");
+                seekbar1.setProgress(seeka3);}
+                else{appText1.setText("FAN OFF");
+                seekbar1.setProgress(0);}
+
+                if(app23){appText2.setText("LIGHT ON");}
+                else{appText2.setText("LIGHT OFF");}
+
+                if(app33){appText3.setText("LIGHT ON");}
+                else{appText3.setText("LIGHT OFF");}
+
+                if(app43){appText4.setText("FAN ON" + "(" + seekb3 + "%)");
+                seekbar2.setProgress(seekb3);}
+                else{appText4.setText("FAN OFF");
+                seekbar1.setProgress(0);}
+            }
+        });
+        roomim1.performClick();
+
+
     }
-
-
-
     //---------------------------------connectivity checking------------------
 
     /*public Boolean connectionCheck() {                                       //// TODO: 4/15/2018 connectivity in thread
@@ -305,13 +580,35 @@ public class MainActivity extends AppCompatActivity {
                 URL url = new URL(ur);
 
                 JSONObject postDataParams = new JSONObject();
-                postDataParams.put("room", "1");
-                postDataParams.put("app1", app1);
-                postDataParams.put("app1a", seek * (10.24));
-                postDataParams.put("app2", app2);
-                postDataParams.put("app3", app3);
-                postDataParams.put("app4", app4);
-                postDataParams.put("app4a",seek2*10.24);
+                if(room==1){
+                postDataParams.put("room1",1);
+                postDataParams.put("app1", app11);
+                postDataParams.put("app1a", seeka1 * (10.24));
+                postDataParams.put("app2", app21);
+                postDataParams.put("app3", app31);
+                postDataParams.put("app4", app41);
+                postDataParams.put("app4a",seekb1*10.24);
+                }
+                else if(room==2){
+
+                    postDataParams.put("room1",2);
+                    postDataParams.put("app1", app12);
+                    postDataParams.put("app1a", seeka2 * (10.24));
+                    postDataParams.put("app2", app22);
+                    postDataParams.put("app3", app32);
+                    postDataParams.put("app4", app42);
+                    postDataParams.put("app4a",seekb2*10.24);
+                }
+                else if(room==3){
+
+                    postDataParams.put("room1",3);
+                    postDataParams.put("app1", app13);
+                    postDataParams.put("app1a", seeka3 * (10.24));
+                    postDataParams.put("app2", app23);
+                    postDataParams.put("app3", app33);
+                    postDataParams.put("app4", app43);
+                    postDataParams.put("app4a",seekb3*10.24);
+                }
 
                 Log.e("params", postDataParams.toString());
 
