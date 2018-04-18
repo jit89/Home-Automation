@@ -212,41 +212,41 @@
 
     <LinearLayout
         android:id="@+id/topLL"
-        android:layout_width="376dp"
-        android:layout_height="46dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="#ceedde"
         android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="MissingConstraints"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
+        android:visibility="visible"
+        android:weightSum="1"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="43dp">
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
+            android:layout_width="44dp"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             app:srcCompat="@drawable/menu_logo"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="303dp"
-            android:layout_height="wrap_content"
+            android:layout_width="275dp"
+            android:layout_height="37dp"
+            android:fontFamily="sans-serif-condensed"
             android:lineSpacingExtra="8sp"
             android:text="SMART HOME"
             android:textAlignment="center"
             android:textColor="@android:color/background_dark"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            tools:ignore="HardcodedText"
+            android:textSize="30sp"
+            tools:ignore="HardcodedText,InefficientWeight"
             tools:layout_editor_absoluteX="72dp"
             tools:layout_editor_absoluteY="46dp" />
 
@@ -254,11 +254,11 @@
             android:id="@+id/infoButton"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_weight="1.35"
             android:background="@color/colorAccent"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/info_logo"
-            tools:ignore="ContentDescription"
-            android:layout_weight="3.22" />
+            tools:ignore="ContentDescription,InefficientWeight" />
 
     </LinearLayout>
 
@@ -286,5 +286,53 @@
         tools:ignore="HardcodedText,SmallSp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp" />
+
+    <LinearLayout
+        android:id="@+id/roomLayout"
+        android:layout_width="335dp"
+        android:layout_height="64dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.784">
+
+        <ImageButton
+            android:id="@+id/imroomButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorPrimaryDark"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bedroom_logo"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/imroomButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/living_logo"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/imroomButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/colorAccent"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dining_logo"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
