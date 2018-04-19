@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     boolean imButtonStat43=false;
     
 
-    boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33,app43;         //bools for json
+    boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33 = false,app43;         //bools for json
     int seeka1= 0;
     int seeka2=0;
     int seeka3=0;

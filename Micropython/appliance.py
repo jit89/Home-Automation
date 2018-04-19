@@ -20,7 +20,7 @@ class Device(object):
         else:
             raise TypeError("Expected argument 2 to be of type machine.Pin but got type {}".format(type(_output_pin)))
 
-        self._data = bytearray(24)
+        self._data = bytearray(24 * 7)  # Represent 24 hours * 7 days as a contigous block of bytes
         self._current_pos = 0
 
     @property
@@ -41,6 +41,14 @@ class Device(object):
         """
         self._output_pin.value(value)
 
+    def toggle_state(self):
+        """Toggles the state of the _output_pin
+        :param: None
+        :return: None
+        """
+        self._output_pin.value(not self._output_pin.value())
+        
+    
     def get_data(self):
         # noinspection SpellCheckingInspection
         """Returns the data as bytearray
@@ -49,15 +57,26 @@ class Device(object):
         """
         return self._data
 
-    def set_data(self, position, value):
+    def set_data(self, day, value):
         if not isinstance(value, int):
-            raise TypeError("Expected argument ")
-
-        if position > 24:
-            # noinspection SpellCheckingInspection
-            raise IndexError("Argument position exceeded bytearray range")
-
-        self._data[position] = value
+            raise TypeError("Expected argument type int but got type {}".format(type(value)))
+        
+        if not isinstance(day, int):
+            raise TypeError("Expected argument type int but got type {}".format(type(day)))
+            
+        if day > 7:
+            raise IndexError("list index out of range")
+            
+        self._data[24 * day + self._current_pos] = self.get_state
+        self.update_index()
 
     def update_index(self):
+        """Updates _current_pos by 1
+        :param: None
+        :return: None
+        """
+        if self._current_pos > 24:
+            self._current_pos = 1
         self._current_pos += 1
+        
+        

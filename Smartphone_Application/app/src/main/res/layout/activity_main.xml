@@ -18,9 +18,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:background="#028479"
         android:orientation="horizontal"
-        android:visibility="visible"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -31,9 +29,8 @@
 
         <LinearLayout
             android:id="@+id/topHSub1"
-            android:layout_width="178dp"
+            android:layout_width="200dp"
             android:layout_height="match_parent"
-            android:layout_weight="0.73"
             android:background="@drawable/grad1"
             android:orientation="vertical"
             android:weightSum="1">
@@ -42,7 +39,7 @@
                 android:id="@+id/imButton1"
                 style="@android:style/Widget.Material.Light.ImageButton"
                 android:layout_width="match_parent"
-                android:layout_height="89dp"
+                android:layout_height="87dp"
                 android:adjustViewBounds="false"
                 android:background="@color/colorPrimary"
                 android:contentDescription=""
@@ -54,7 +51,7 @@
 
             <TextView
                 android:id="@+id/appText1"
-                android:layout_width="181dp"
+                android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_weight="0.59"
                 android:lineSpacingExtra="8sp"
@@ -70,7 +67,7 @@
             <SeekBar
                 android:id="@+id/seekBar1"
                 style="@android:style/Widget.Material.SeekBar"
-                android:layout_width="175dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progressBackgroundTint="#e0e549"
                 android:thumbTint="#c9efe5"
@@ -79,9 +76,8 @@
 
         <LinearLayout
             android:id="@+id/hopHSub2"
-            android:layout_width="178dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="0.30"
             android:background="@drawable/grad1"
             android:orientation="vertical"
             android:weightSum="1">
@@ -99,8 +95,8 @@
 
             <TextView
                 android:id="@+id/appText2"
-                android:layout_width="181dp"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
                 android:layout_weight="0.64"
                 android:lineSpacingExtra="8sp"
                 android:text="Light"
@@ -116,10 +112,8 @@
         android:id="@+id/linearHor2"
         android:layout_width="0dp"
         android:layout_height="148dp"
-        android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:background="@color/colorAccent"
         android:baselineAligned="false"
@@ -127,15 +121,15 @@
         android:visibility="visible"
         android:weightSum="1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.54"
+        app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.47000003">
+        app:layout_constraintVertical_bias="0.39999998">
 
         <LinearLayout
             android:id="@+id/botHSub1"
-            android:layout_width="178dp"
+            android:layout_width="193dp"
             android:layout_height="match_parent"
             android:layout_weight="0.75"
             android:background="@drawable/grad1"
@@ -169,7 +163,7 @@
 
         <LinearLayout
             android:id="@+id/botHSub2"
-            android:layout_width="178dp"
+            android:layout_width="192dp"
             android:layout_height="match_parent"
             android:background="@drawable/grad1"
             android:orientation="vertical"
@@ -189,7 +183,7 @@
 
             <TextView
                 android:id="@+id/appText4"
-                android:layout_width="181dp"
+                android:layout_width="match_parent"
                 android:layout_height="25dp"
                 android:layout_weight="0.44"
                 android:lineSpacingExtra="8sp"
@@ -202,7 +196,7 @@
 
             <SeekBar
                 android:id="@+id/seekBar2"
-                android:layout_width="175dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:progressBackgroundTint="#e0e549"
                 android:thumbTint="#c9efe5" />
@@ -280,10 +274,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.839"
-        tools:ignore="HardcodedText,SmallSp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintVertical_bias="0.812"
+        tools:ignore="HardcodedText,SmallSp" />
 
     <LinearLayout
         android:id="@+id/roomLayout"
