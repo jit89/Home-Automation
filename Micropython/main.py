@@ -1,17 +1,16 @@
-import globals
 import utime
 from appliance import Device
 from machine import Pin
 from utils import rtc_init
 
-ssid = "AndroidAP"
-password = "Simba008"
+ssid = "your-ssid-here"
+password = "your-password-here"
 
 
 def init():
     """All initialisations here"""
 
-    rtc_init(globals.ssid, globals.password)
+    rtc_init(ssid, password)
     print(utime.localtime())
 
     output_pins = (0, 14, 13)  # Define your output pins here
