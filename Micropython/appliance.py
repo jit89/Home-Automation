@@ -22,8 +22,7 @@ class Device(object):
             raise TypeError("Expected argument 2 to be of type machine.Pin but got type {}".format(type(_output_pin)))
 
         self._data = bytearray(24 * 7)  # Represent 24 hours * 7 days as a contiguous block of bytes
-        self._current_pos = 0
-        self.timer = machine.Timer(-1)
+
         self.on_time = 0
         self.oldHour = utime.localtime()[3]
 
@@ -86,15 +85,3 @@ class Device(object):
 
         if self.get_state() == 1:
             self.on_time += 1
-
-    def vtimer_init(self):
-        """Initialises the virtual timer object and starts it in periodic mode
-        :return: None
-        """
-        self.timer.init(period=60000, mode=machine.Timer.PERIODIC, callback=lambda _: self.calibrate_stagnancy())
-
-    def vtimer_deinit(self):
-        """Stops the previously started virtual timer
-        :return: None
-        """
-        self.timer.deinit()
