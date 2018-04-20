@@ -96,6 +96,6 @@ def rtc_init(ssid, password, rtc):
             break
 
     GmtTime = utime.time()
-    IST = GmtTime + 3600 * 5 + 60 * 30
+    IST = GmtTime + 19800
     (year, month, mday, hour, minute, second, weekday, yearday) = utime.localtime(IST)
-    rtc.datetime((year, month, mday, hour, minute, second, weekday, yearday))
+    rtc.datetime((year, month, mday, 0, hour, minute, second, 0))
