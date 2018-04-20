@@ -24,7 +24,7 @@ class Timed(object):
 
 
 class FM24CL16B(object):
-    """Driver class for FM24CL16B-G 2 x 8kb FRAM
+    """Driver class for FM24CL16B-G 2k x 8b FRAM
     """
 
     def __init__(self):
