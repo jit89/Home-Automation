@@ -4,8 +4,8 @@ from appliance import Device
 from machine import Pin
 from utils import rtc_init
 
-ssid = "D-Link"
-password = "ik1224kln"
+ssid = "your-ssid-here"
+password = "your-password-here"
 rtc = machine.RTC()
 
 
