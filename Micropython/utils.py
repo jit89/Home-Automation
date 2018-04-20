@@ -2,7 +2,7 @@ import machine
 import utime
 
 
-class timed(object):
+class Timed(object):
     """
     Decorator class for executing a function after certain intervals
     """
@@ -31,6 +31,7 @@ class FM24CL16B(object):
         pass
 
 
+
 class Nointerrupts(object):
     """Context manager class for writing time critical code
 
@@ -43,7 +44,7 @@ class Nointerrupts(object):
         machine.enable_irq(self.state)
 
 
-class Gpio(object):
+class GPIO(object):
     def __init__(self):
         self.D3 = const(0)
         self.D5 = const(14)
@@ -51,3 +52,45 @@ class Gpio(object):
         self.D8 = const(15)
         self.D0 = const(16)
         self.D6 = const(12)
+
+
+def rtc_init(ssid, password):
+    """Initialises the rtc from ntp and sets it to IST (Indian Standard Time)
+
+    :param ssid: String
+    :param password: String
+    :return: None
+    """
+
+    if not isinstance(ssid, str) and not isinstance(password, str):
+        raise TypeError("Expected arguments to be of type str but got type {} {} ".format(type(ssid)), type(password))
+
+    import network, ntptime
+    num_trials = 0
+    rtc_set = False
+
+    sta_if = network.WLAN(network.STA_IF)
+    if not sta_if.isconnected():
+        sta_if.active(True)
+        sta_if.connect(ssid, password)
+        while not sta_if.isconnected():
+            utime.sleep(1)
+
+    while not rtc_set:
+
+        try:
+            ntptime.settime()
+        except:
+            num_trials += 1
+        else:
+            rtc_set = True
+
+        if num_trials == 5:
+            raise Exception("Failed to set time! ")
+            break
+
+    rtc = machine.RTC()
+    GmtTime = utime.time()
+    IST = GmtTime + 3600 * 5 + 60 * 30
+    (year, month, mday, hour, minute, second, weekday, yearday) = utime.localtime(IST)
+    rtc.datetime((year, month, mday, hour, minute, second, weekday, yearday))
