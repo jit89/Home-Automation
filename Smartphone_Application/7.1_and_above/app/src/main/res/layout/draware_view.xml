@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+
+    >
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/one"
+            android:title="CASE 1"
+
+
+            />
+        <item
+            android:id="@+id/two"
+            android:title="CASE 2" />
+        <item
+            android:id="@+id/three"
+            android:title="CASE 3" />
+        <item
+            android:id="@+id/four"
+            android:title="CASE 4" />
+    </group>
+</menu>

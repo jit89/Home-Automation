@@ -1,4 +1,5 @@
 import machine
+import utime
 
 
 class Device(object):
@@ -20,10 +21,12 @@ class Device(object):
         else:
             raise TypeError("Expected argument 2 to be of type machine.Pin but got type {}".format(type(_output_pin)))
 
-        self._data = bytearray(24 * 7)  # Represent 24 hours * 7 days as a contigous block of bytes
+        self._data = bytearray(24 * 7)  # Represent 24 hours * 7 days as a contiguous block of bytes
         self._current_pos = 0
+        self.timer = machine.Timer(-1)
+        self.on_time = 0
+        self.oldHour = utime.localtime()[3]
 
-    @property
     def get_state(self):
         """Returns the state of the _input_pin
         :param: None
@@ -47,36 +50,51 @@ class Device(object):
         :return: None
         """
         self._output_pin.value(not self._output_pin.value())
-        
-    
+
     def get_data(self):
         # noinspection SpellCheckingInspection
         """Returns the data as bytearray
-        :param: None
         :return: bytearray
         """
         return self._data
 
-    def set_data(self, day, value):
+    def set_data(self, day, Pos, value):
         if not isinstance(value, int):
             raise TypeError("Expected argument type int but got type {}".format(type(value)))
-        
+
         if not isinstance(day, int):
             raise TypeError("Expected argument type int but got type {}".format(type(day)))
-            
-        if day > 7:
-            raise IndexError("list index out of range")
-            
-        self._data[24 * day + self._current_pos] = self.get_state
-        self.update_index()
 
-    def update_index(self):
-        """Updates _current_pos by 1
-        :param: None
+        if day > 6:
+            raise IndexError("bytearray index out of range")
+
+        self._data[24 * day + Pos] = value
+
+    def calibrate_stagnancy(self):
+        """
+        Determine the time for which the device was on and set _data according to a threshold
         :return: None
         """
-        if self._current_pos > 24:
-            self._current_pos = 1
-        self._current_pos += 1
-        
-        
+        print("[INFO] Appliance.Device.calibrate_stagnancy works fine")
+
+        if utime.localtime()[3] != self.oldHour:
+            divfactor = 60
+
+            self.set_data(utime.localtime()[2], self.oldHour, int(self.on_time / divfactor) > 0.3)
+            self.oldHour = utime.localtime()[3]
+            self.on_time = 0
+
+        if self.get_state() == 1:
+            self.on_time += 1
+
+    def vtimer_init(self):
+        """Initialises the virtual timer object and starts it in periodic mode
+        :return: None
+        """
+        self.timer.init(period=60000, mode=machine.Timer.PERIODIC, callback=lambda _: self.calibrate_stagnancy())
+
+    def vtimer_deinit(self):
+        """Stops the previously started virtual timer
+        :return: None
+        """
+        self.timer.deinit()
