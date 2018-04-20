@@ -46,12 +46,15 @@ class Nointerrupts(object):
 
 class GPIO(object):
     def __init__(self):
-        self.D3 = const(0)
+        self.D0 = const(16)
+        self.D1 = const(05)
+        self.D2 = const(04)
+        self.D3 = const(00)
+        self.D4 = const(02)
         self.D5 = const(14)
+        self.D6 = const(12)
         self.D7 = const(13)
         self.D8 = const(15)
-        self.D0 = const(16)
-        self.D6 = const(12)
 
 
 def rtc_init(ssid, password):
