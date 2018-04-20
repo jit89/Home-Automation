@@ -13,7 +13,7 @@ def init():
     rtc_init(ssid, password)
     print(utime.localtime())
 
-    output_pins = (0, 14, 13)  # Define your output pins here
+    output_pins = (00, 14, 13)  # Define your output pins here
     input_pins = (15, 16, 12)  # Define your input pins here
 
     devices = [Device(Pin(In), Pin(Out)) for In, Out in zip(input_pins, output_pins)]
