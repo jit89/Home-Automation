@@ -1,7 +1,9 @@
 import machine
 import utime
+from utils import Nointerrupts
 
 
+# noinspection SpellCheckingInspection
 class Device(object):
     """
     Device class for the appliances
@@ -27,7 +29,8 @@ class Device(object):
         self.oldHour = utime.localtime()[3]
 
     def get_state(self):
-        """Returns the state of the _input_pin
+        """
+        Returns the state of the _input_pin
         :param: None
         :return: Boolean
         """
@@ -35,8 +38,8 @@ class Device(object):
         return self._input_pin.value()
 
     def set_state(self, value):
-        """Sets the state of the _output_pin
-
+        """
+        Sets the state of the _output_pin
         :param: value
         :type: Boolean
         :return: None
@@ -44,7 +47,8 @@ class Device(object):
         self._output_pin.value(value)
 
     def toggle_state(self):
-        """Toggles the state of the _output_pin
+        """
+        Toggles the state of the _output_pin
         :param: None
         :return: None
         """
@@ -52,12 +56,13 @@ class Device(object):
 
     def get_data(self):
         # noinspection SpellCheckingInspection
-        """Returns the data as bytearray
+        """
+        Returns the data as bytearray
         :return: bytearray
         """
         return self._data
 
-    def set_data(self, day, Pos, value):
+    def set_data(self, day, pos, value):
         if not isinstance(value, int):
             raise TypeError("Expected argument type int but got type {}".format(type(value)))
 
@@ -67,14 +72,13 @@ class Device(object):
         if day > 6:
             raise IndexError("bytearray index out of range")
 
-        self._data[24 * day + Pos] = value
+        self._data[24 * day + pos] = value
 
     def calibrate_stagnancy(self):
         """
         Determine the time for which the device was on and set _data according to a threshold
         :return: None
         """
-        print("[INFO] Appliance.Device.calibrate_stagnancy works fine")
 
         if utime.localtime()[3] != self.oldHour:
             divfactor = 60
@@ -85,3 +89,38 @@ class Device(object):
 
         if self.get_state() == 1:
             self.on_time += 1
+
+    def save_to_mem(self, i2c, memaddr):
+        """
+        Save _data to FRAM memory
+        :param i2c: machine.I2C object
+        :param memaddr: starting memory location for writing _data
+        :return: length of bytes written
+        """
+        if not isinstance(i2c, machine.I2C):
+            raise TypeError("Expected argument 1 to be of type machine.I2C but got type {}".format(type(i2c)))
+
+        if not isinstance(memaddr, int):
+            raise TypeError(" Expected argument 2 to be of type machine.I2C but got type {}".format((type(memaddr))))
+
+        with Nointerrupts:
+            i2c.writeto_mem(80, memaddr, self._data)
+
+        return len(self._data)
+
+    def load_from_mem(self, i2c, memaddr):
+        """
+        Load _data from FRAM memory location
+        :param i2c: machine.I2C object
+        :param memaddr: FRAM memory location to read from
+        :return:
+        """
+
+        if not isinstance(i2c, machine.I2C):
+            raise TypeError("Expected argument 1 to be of type machine.I2C but got type {}".format(type(i2c)))
+
+        if not isinstance(memaddr, int):
+            raise TypeError(" Expected argument 2 to be of type machine.I2C but got type {}".format((type(memaddr))))
+
+        with Nointerrupts:
+            i2c.readfrom_mem_into(80, memaddr, self._data)
