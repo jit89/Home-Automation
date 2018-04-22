@@ -12,11 +12,10 @@
 
 
         <RelativeLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="@drawable/grad1"
             android:orientation="vertical">
-
 
             <LinearLayout
                 android:id="@+id/topLL"
@@ -30,7 +29,6 @@
                 android:background="#ceedde"
                 android:orientation="horizontal"
                 android:visibility="visible"
-                android:weightSum="1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -38,7 +36,8 @@
 
                 <ImageButton
                     android:id="@+id/imMenuButt"
-                    android:layout_width="44dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="5"
                     android:layout_height="match_parent"
                     android:scaleType="fitCenter"
                     android:background="@color/colorAccent"
@@ -47,7 +46,8 @@
 
                 <TextView
                     android:id="@+id/textView2"
-                    android:layout_width="275dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
                     android:layout_height="37dp"
                     android:fontFamily="sans-serif-condensed"
                     android:lineSpacingExtra="8sp"
@@ -55,200 +55,205 @@
                     android:textAlignment="center"
                     android:textColor="@android:color/background_dark"
                     android:textSize="30sp"
-                    tools:ignore="HardcodedText,InefficientWeight"
                     tools:layout_editor_absoluteX="72dp"
                     tools:layout_editor_absoluteY="46dp" />
 
                 <ImageButton
                     android:id="@+id/infoButton"
-                    android:layout_width="44dp"
+                    android:layout_width="match_parent"
+                    android:layout_weight="5"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.35"
                     android:background="@color/colorAccent"
                     android:scaleType="fitCenter"
                     app:srcCompat="@drawable/info_logo"
-                    tools:ignore="ContentDescription,InefficientWeight" />
-
-
-
+                    />
 
             </LinearLayout>
 
-
-            <TableLayout
+            <LinearLayout
+                android:id="@+id/linearHor1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="148dp"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/topLL"
-                android:stretchColumns="2">
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="61dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
 
-                <TableRow>
+                >
 
-                    <LinearLayout
-                        android:id="@+id/topHSub1"
-                        android:layout_width="217dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/grad1"
-                        android:orientation="vertical"
-                        android:weightSum="1">
+                <LinearLayout
+                    android:id="@+id/topHSub1"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/grad1"
+                    android:orientation="vertical">
 
-                        <ImageButton
-                            android:id="@+id/imButton1"
-                            style="@android:style/Widget.Material.Light.ImageButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="87dp"
-                            android:adjustViewBounds="false"
-                            android:background="@color/colorPrimary"
-                            android:contentDescription=""
-                            android:cropToPadding="false"
-                            android:scaleType="fitCenter"
-                            android:visibility="visible"
-                            app:srcCompat="@drawable/fan_logo1"
-                            tools:ignore="ContentDescription,InefficientWeight,NestedWeights" />
-
-                        <TextView
-                            android:id="@+id/appText1"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:lineSpacingExtra="8sp"
-                            android:text="@string/app1Text"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/background_light"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            tools:ignore="InefficientWeight,NestedWeights"
-                            tools:layout_editor_absoluteX="243dp"
-                            tools:layout_editor_absoluteY="395dp" />
-
-                        <SeekBar
-                            android:id="@+id/seekBar1"
-                            style="@android:style/Widget.Material.SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:progressBackgroundTint="#e0e549"
-                            android:thumbTint="#c9efe5"
-                            android:visibility="visible" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/hopHSub2"
+                    <ImageButton
+                        android:id="@+id/imButton1"
+                        style="@android:style/Widget.Material.Light.ImageButton"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/grad1"
-                        android:orientation="vertical"
-                        android:weightSum="1">
-
-                        <ImageButton
-                            android:id="@+id/imButton2"
-                            android:layout_width="match_parent"
-                            android:layout_height="89dp"
-                            android:background="@color/colorAccent"
-                            android:elevation="0dp"
-                            android:scaleType="fitCenter"
-                            android:visibility="visible"
-                            app:srcCompat="@drawable/light_logo"
-                            tools:ignore="ContentDescription,InefficientWeight,NestedWeights" />
-
-                        <TextView
-                            android:id="@+id/appText2"
-                            android:layout_width="match_parent"
-                            android:layout_height="40dp"
-                            android:layout_weight="0.64"
-                            android:lineSpacingExtra="8sp"
-                            android:text="Light"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/background_light"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            tools:ignore="HardcodedText,InefficientWeight,NestedWeights" />
-                    </LinearLayout>
-                </TableRow>
-
-                <TableRow>
-
-                    <LinearLayout
-                        android:id="@+id/botHSub1"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="0.75"
-                        android:background="@drawable/grad1"
-                        android:orientation="vertical"
-                        android:weightSum="1"
-                        tools:ignore="InefficientWeight,UselessLeaf">
-
-                        <ImageButton
-                            android:id="@+id/imButton3"
-                            android:layout_width="match_parent"
-                            android:layout_height="97dp"
-                            android:background="@color/colorAccent"
-                            android:elevation="0dp"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/light_logo"
-                            tools:ignore="ContentDescription,NestedWeights" />
-
-                        <TextView
-                            android:id="@+id/appText3"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_weight="0.62"
-                            android:lineSpacingExtra="8sp"
-                            android:text="Light"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/background_light"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            tools:ignore="HardcodedText,NestedWeights" />
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:id="@+id/botHSub2"
-                        android:layout_width="192dp"
-                        android:layout_height="match_parent"
-                        android:background="@drawable/grad1"
-                        android:orientation="vertical"
+                        android:layout_height="87dp"
+                        android:adjustViewBounds="false"
+                        android:background="@color/colorPrimary"
+                        android:contentDescription=""
+                        android:cropToPadding="false"
+                        android:scaleType="fitCenter"
                         android:visibility="visible"
-                        android:weightSum="1"
-                        tools:layout_editor_absoluteX="8dp"
-                        tools:layout_editor_absoluteY="8dp">
+                        app:srcCompat="@drawable/fan_logo1" />
 
-                        <ImageButton
-                            android:id="@+id/imButton4"
-                            android:layout_width="match_parent"
-                            android:layout_height="89dp"
-                            android:background="@color/colorPrimary"
-                            android:scaleType="fitCenter"
-                            app:srcCompat="@drawable/fan_logo1"
-                            tools:ignore="ContentDescription,InefficientWeight" />
+                    <TextView
+                        android:id="@+id/appText1"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:lineSpacingExtra="8sp"
+                        android:text="@string/app1Text"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/appText4"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_weight="0.44"
-                            android:lineSpacingExtra="8sp"
-                            android:text="Fan"
-                            android:textAlignment="center"
-                            android:textColor="@android:color/background_light"
-                            android:textSize="20sp"
-                            android:textStyle="bold"
-                            tools:ignore="HardcodedText,InefficientWeight" />
+                    <SeekBar
+                        android:id="@+id/seekBar1"
+                        style="@android:style/Widget.Material.SeekBar"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:progressBackgroundTint="#e0e549"
+                        android:thumbTint="#c9efe5"
+                        android:visibility="visible" />
+                </LinearLayout>
 
-                        <SeekBar
-                            android:id="@+id/seekBar2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:progressBackgroundTint="#e0e549"
-                            android:thumbTint="#c9efe5" />
+                <LinearLayout
+                    android:id="@+id/hopHSub2"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/grad1"
+                    android:orientation="vertical"
+                    >
 
-                    </LinearLayout>
-                </TableRow>
-            </TableLayout>
+                    <ImageButton
+                        android:id="@+id/imButton2"
+                        android:layout_width="match_parent"
+                        android:layout_height="89dp"
+                        android:background="@color/colorAccent"
+                        android:elevation="0dp"
+                        android:scaleType="fitCenter"
+                        android:visibility="visible"
+                        app:srcCompat="@drawable/light_logo"
+                        />
+
+                    <TextView
+                        android:id="@+id/appText2"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:lineSpacingExtra="8sp"
+                        android:text="Light"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                         />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearHor2"
+                android:layout_width="match_parent"
+                android:layout_height="148dp"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/linearHor1"
+                android:background="@color/colorAccent"
+                android:baselineAligned="false"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.57"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.39999998">
+
+                <LinearLayout
+                    android:id="@+id/botHSub1"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/grad1"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/imButton3"
+                        android:layout_width="match_parent"
+                        android:layout_height="97dp"
+                        android:background="@color/colorAccent"
+                        android:elevation="0dp"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/light_logo" />
+
+                    <TextView
+                        android:id="@+id/appText3"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:lineSpacingExtra="8sp"
+                        android:text="Light"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/botHSub2"
+                    android:layout_width="match_parent"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/grad1"
+                    android:orientation="vertical"
+                    android:visibility="visible"
+                    tools:layout_editor_absoluteX="8dp"
+                    tools:layout_editor_absoluteY="8dp">
+
+                    <ImageButton
+                        android:id="@+id/imButton4"
+                        android:layout_width="match_parent"
+                        android:layout_height="89dp"
+                        android:background="@color/colorPrimary"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/fan_logo1"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/appText4"
+                        android:layout_width="match_parent"
+                        android:layout_height="25dp"
+                        android:lineSpacingExtra="8sp"
+                        android:text="Fan"
+                        android:textAlignment="center"
+                        android:textColor="@android:color/background_light"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                    <SeekBar
+                        android:id="@+id/seekBar2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:progressBackgroundTint="#e0e549"
+                        android:thumbTint="#c9efe5" />
+
+                </LinearLayout>
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/connectionCheckText"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_width="342dp"
+                android:layout_height="28dp"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"
                 android:layout_marginBottom="71dp"
@@ -284,9 +289,10 @@
 
                 <ImageButton
                     android:id="@+id/imroomButton1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
                     android:layout_weight="1"
+                    android:layout_height="match_parent"
+
                     android:background="@color/colorPrimaryDark"
                     android:scaleType="fitCenter"
                     android:src="@drawable/bedroom_logo"
@@ -294,9 +300,9 @@
 
                 <ImageButton
                     android:id="@+id/imroomButton2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
                     android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:background="@color/colorAccent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/living_logo"
@@ -304,16 +310,14 @@
 
                 <ImageButton
                     android:id="@+id/imroomButton3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
                     android:layout_weight="1"
+                    android:layout_height="match_parent"
                     android:background="@color/colorAccent"
                     android:scaleType="fitCenter"
                     android:src="@drawable/dining_logo"
                     tools:ignore="ContentDescription" />
             </LinearLayout>
-
-
 
         </RelativeLayout>
     </FrameLayout>

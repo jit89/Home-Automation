@@ -1,6 +1,5 @@
 package com.example.rak3sh.smarthome_app;
 
-import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -17,7 +16,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -79,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -110,7 +109,6 @@ public class MainActivity extends AppCompatActivity {
 
         seekbar1 = (SeekBar) findViewById(R.id.seekBar1);
         seekbar2 = (SeekBar) findViewById(R.id.seekBar2);
-
 
 
 
