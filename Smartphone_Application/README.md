@@ -8,7 +8,7 @@ In designing xml of this app navigation drawer layout is used
 A rough map of the xml layout  is given below:
     
     ----drawer_layout
-        |--Frame_layout
+             |--Frame_layout
                    |---Relative_layout
                            |
                            |---Linear Layout(H)
