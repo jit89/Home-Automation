@@ -1,3 +1,4 @@
+import machine
 import utime
 from appliance import Device
 from machine import Pin
@@ -5,30 +6,32 @@ from utils import rtc_init
 
 ssid = "your-ssid-here"
 password = "your-password-here"
+rtc = machine.RTC()
+
+
+def test_stagnancy(deviceList):
+    for device in deviceList:
+        device.calibrate_stagnancy()
 
 
 def init():
     """All initialisations here"""
 
-    rtc_init(ssid, password)
+    rtc_init(ssid, password, rtc)
     print(utime.localtime())
 
-    output_pins = (0, 14, 13)  # Define your output pins here
+    deviceTimer = machine.Timer(-1)
+
+    output_pins = (00, 14, 13)  # Define your output pins here
     input_pins = (15, 16, 12)  # Define your input pins here
 
     devices = [Device(Pin(In), Pin(Out)) for In, Out in zip(input_pins, output_pins)]
+    deviceTimer.init(period=60000, mode=machine.Timer.PERIODIC, callback=lambda _: test_stagnancy(devices))
 
-    for device in devices:
-        try:
-            device.vtimer_init()
-        except Exception as e:
-            print(e)
-            print("Failed to start Timer")
-            device.vtimer_deinit()
 
 def main():
     init()
 
     while True:
-        """all routines that are repeated"""
+        """All routines that are repeated"""
         pass

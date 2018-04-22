@@ -46,15 +46,18 @@ class Nointerrupts(object):
 
 class GPIO(object):
     def __init__(self):
+        self.D0 = const(16)
+        self.D1 = const(5)
+        self.D2 = const(4)
         self.D3 = const(0)
+        self.D4 = const(2)
         self.D5 = const(14)
+        self.D6 = const(12)
         self.D7 = const(13)
         self.D8 = const(15)
-        self.D0 = const(16)
-        self.D6 = const(12)
 
 
-def rtc_init(ssid, password):
+def rtc_init(ssid, password, rtc):
     """Initialises the rtc from ntp and sets it to IST (Indian Standard Time)
 
     :param ssid: String
@@ -64,6 +67,9 @@ def rtc_init(ssid, password):
 
     if not isinstance(ssid, str) and not isinstance(password, str):
         raise TypeError("Expected arguments to be of type str but got type {} {} ".format(type(ssid)), type(password))
+
+    if not isinstance(rtc, machine.RTC):
+        raise TypeError("Expected argument 3 to be of type machine.RTC but got type {}".format(type(rtc)))
 
     import network, ntptime
     num_trials = 0
@@ -89,8 +95,7 @@ def rtc_init(ssid, password):
             raise Exception("Failed to set time! ")
             break
 
-    rtc = machine.RTC()
     GmtTime = utime.time()
-    IST = GmtTime + 3600 * 5 + 60 * 30
+    IST = GmtTime + 19800
     (year, month, mday, hour, minute, second, weekday, yearday) = utime.localtime(IST)
-    rtc.datetime((year, month, mday, hour, minute, second, weekday, yearday))
+    rtc.datetime((year, month, mday, 0, hour, minute, second, 0))
