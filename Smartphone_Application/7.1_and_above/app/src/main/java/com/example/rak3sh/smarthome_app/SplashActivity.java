@@ -21,7 +21,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
-        new fetchdata().execute();
+        //new fetchdata().execute();
         Log.e("fetchdata","ok");
 
     }
