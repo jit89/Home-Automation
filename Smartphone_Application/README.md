@@ -44,6 +44,8 @@ A rough map of the xml layout  is given below:
                         |---Header
                         |---Drawer Views
         
+        |--Splashscreen
+        
         
 ## MainActivity
 * Separate boolean variables are assigned for every individual appliances of every room.
@@ -54,7 +56,7 @@ and also change the text view.
         
 
 ## Screenshots
-![alt text](/home/rakesh/Pictures/Screenshot_1524394995.png)
+<img src="https://drive.google.com/open?id=1PFM0Yrt6HeS4A9ezRCJiXk7WrHY2juAu"/>
         
         
         
