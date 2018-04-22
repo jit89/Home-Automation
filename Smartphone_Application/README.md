@@ -56,7 +56,7 @@ and also change the text view.
         
 
 ## Screenshots
-<img src="https://drive.google.com/open?id=1PFM0Yrt6HeS4A9ezRCJiXk7WrHY2juAu"/>
+![1][/Smartphone_Application/Screenshots/Screenshot_1524394995.png]
         
         
         
