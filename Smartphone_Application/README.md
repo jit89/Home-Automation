@@ -54,7 +54,7 @@ and also change the text view.
         
 
 ## Screenshots
-
+[!alt text](/home/rakesh/Pictures/Screenshot_1524394995.png ")
         
         
         
