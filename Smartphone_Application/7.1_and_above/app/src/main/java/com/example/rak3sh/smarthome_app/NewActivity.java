@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 /**
  * Created by RAK3SH on 4/17/2018.
+ * About information will go there.
  */
 
 public class NewActivity extends Activity {

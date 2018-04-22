@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
     boolean imButtonStat43=false;
     
 
-    boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33 = false,app43;         //bools for json
+    boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33,app43;         //bools for json
     int seeka1= 0;
     int seeka2=0;
     int seeka3=0;
@@ -74,17 +74,12 @@ public class MainActivity extends AppCompatActivity {
       DrawerLayout mdrawerLayout;
 
 
-
-
-
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
 
         imageButton1 = (ImageButton) findViewById(R.id.imButton1);
@@ -114,6 +109,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         roomim1.performClick();
+        //-------------------------------Splash screen oncreate-------------------
+
+                        //created with splashActivity
+
+
 
         //============================>>>>>>>>>>>info<<<<<<<<<<<<<<<==============================
         infoButton.setOnClickListener(new View.OnClickListener() {
