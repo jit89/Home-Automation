@@ -25,7 +25,7 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="4dp"
-        android:text="Rakesh Seal"
+        android:text="User Name"
         android:textAlignment="center"
         android:visibility="visible"
         android:textSize="20sp"

@@ -1,5 +1,6 @@
 package com.example.rak3sh.smarthome_app;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
@@ -157,8 +158,11 @@ public class MainActivity extends AppCompatActivity {
                        Toast.makeText(getApplicationContext(),"Three",Toast.LENGTH_LONG).show();
                        break;
                    case R.id.four:
-                       Toast.makeText(getApplicationContext(),"Four",Toast.LENGTH_LONG).show();
-                       break;
+                       finish();
+                       Intent intent = new Intent(Intent.ACTION_MAIN);
+                       intent.addCategory(Intent.CATEGORY_HOME);
+                       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                       startActivity(intent);
 
 
                }
