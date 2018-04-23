@@ -3,6 +3,7 @@ package com.example.rak3sh.smarthome_app;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     TextView appText1,appText2,appText3,appText4;
     SeekBar seekbar1,seekbar2;
       DrawerLayout mdrawerLayout;
+      String UserName;
 
 
     @Override
@@ -80,6 +82,24 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
+    //=====================>>>>>>>>>nav header setup<<<<<<<<<<<<<<<<<<<<=======================
+
+
+        SharedPreferences pref=getSharedPreferences("homepref",0);
+        UserName=pref.getString("name","Smart Home");
+
+       NavigationView navigationView=(NavigationView)findViewById(R.id.nav_view);
+       View hview=navigationView.getHeaderView(0);
+       TextView userName=(TextView) hview.findViewById(R.id.navHeaderText);
+
+
+        userName.setText(UserName);
+
+
+//================vars=============
 
 
         imageButton1 = (ImageButton) findViewById(R.id.imButton1);
@@ -100,6 +120,7 @@ public class MainActivity extends AppCompatActivity {
         appText2 = (TextView) findViewById(R.id.appText2);
         appText3 = (TextView) findViewById(R.id.appText3);
         appText4 = (TextView) findViewById(R.id.appText4);
+
 
         //connectionCheckText = (TextView) findViewById(R.id.connectionCheckText);
 
@@ -148,6 +169,9 @@ public class MainActivity extends AppCompatActivity {
                switch(item.getItemId()){
                    case R.id.one:
                        Toast.makeText(getApplicationContext(),"one",Toast.LENGTH_LONG).show();
+                       Intent j=new Intent(MainActivity.this,login.class);
+                       startActivity(j);
+                       finish();
                        break;
 
                    case R.id.two:

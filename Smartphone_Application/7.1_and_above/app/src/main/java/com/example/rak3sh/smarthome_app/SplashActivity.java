@@ -2,10 +2,11 @@ package com.example.rak3sh.smarthome_app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
-
+import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 import static android.content.ContentValues.TAG;
@@ -16,13 +17,28 @@ public class SplashActivity extends Activity {
     public int seeka1,seekb1,seeka2,seekb2,seeka3,seekb3;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
+        SharedPreferences pref=getSharedPreferences("homepref",0);
+        String Name= pref.getString("name",null);
+        if(Name!=null){
+        Toast.makeText(getApplicationContext(),("Hello,"+Name),Toast.LENGTH_SHORT).show();}
+        if((Name!="")&&(Name!=null)){
+            new fetchdata().execute();
+            Log.e("fetchdata","ok");
+        }
+        else {
+            Intent k=new Intent(SplashActivity.this,login.class);
+            startActivity(k);
+            finish();
 
-        //new fetchdata().execute();
-        Log.e("fetchdata","ok");
+        }
+
+
+
 
     }
 

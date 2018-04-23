@@ -18,6 +18,8 @@
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait">
         </activity>
+        <activity android:name=".login"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".NewActivity"
             android:screenOrientation="portrait">
