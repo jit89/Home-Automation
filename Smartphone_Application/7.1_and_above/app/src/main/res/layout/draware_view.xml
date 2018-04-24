@@ -10,17 +10,23 @@
         <item
             android:id="@+id/one"
             android:title="Credentials"
+            android:icon="@drawable/cred"
 
 
             />
         <item
             android:id="@+id/two"
-            android:title="Options" />
+            android:title="Options"
+            android:icon="@drawable/menu_logo"/>
         <item
             android:id="@+id/three"
-            android:title="About us" />
+            android:title="About us"
+            android:icon="@drawable/info_logo"/>
         <item
             android:id="@+id/four"
-            android:title="Exit" />
+            android:icon="@drawable/exit"
+            android:title="Exit"
+
+            />
     </group>
 </menu>
