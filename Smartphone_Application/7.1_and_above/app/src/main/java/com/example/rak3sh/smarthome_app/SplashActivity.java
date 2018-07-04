@@ -60,7 +60,7 @@ public class SplashActivity extends Activity {
             HttpHandler sh = new HttpHandler();
             Log.e("Handler","ok");
 
-            String u="https://api.androidhive.info/game/game_stats.json";    //URL goes here for fetching
+            String u="http://phpexampl.000webhostapp.com/test.php?opt=x";    //URL goes here for fetching
 
             String jsonStr = sh.makeServiceCall(u);
 
