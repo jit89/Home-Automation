@@ -43,19 +43,21 @@ public class MainActivity extends AppCompatActivity {
     //// TODO: 4/16/2018 onstart status changes
 
 
+
     boolean imButtonStat11 = false;         //ButtonState for on off checking
-    boolean imButtonStat21=false;
-    boolean imButtonStat31= false;
-    boolean imButtonStat41=false;
+    boolean imButtonStat21 = false;
+    boolean imButtonStat31 = false;
+    boolean imButtonStat41 = false;
     boolean imButtonStat12 = false;         //ButtonState for on off checking
-    boolean imButtonStat22=false;
-    boolean imButtonStat32= false;
-    boolean imButtonStat42=false;
+    boolean imButtonStat22 = false;
+    boolean imButtonStat32 = false;
+    boolean imButtonStat42 = false;
     boolean imButtonStat13 = false;         //ButtonState for on off checking
-    boolean imButtonStat23=false;
-    boolean imButtonStat33= false;
-    boolean imButtonStat43=false;
-    
+    boolean imButtonStat23 = false;
+    boolean imButtonStat33 = false;
+    boolean imButtonStat43 = false;
+
+
 
     boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33,app43;         //bools for json
     int seeka1= 0;
@@ -82,10 +84,22 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent i=getIntent();
 
+        imButtonStat11 = i.getBooleanExtra("app11",true);         //ButtonState for on off checking
+        imButtonStat21 = i.getBooleanExtra("app21",false);
+        imButtonStat31 = i.getBooleanExtra("app31",false);;
+        imButtonStat41 = i.getBooleanExtra("app41",false);;
+        imButtonStat12 = i.getBooleanExtra("app12",false);;         //ButtonState for on off checking
+        imButtonStat22 = i.getBooleanExtra("app22",false);;
+        imButtonStat32 = i.getBooleanExtra("app32",false);;
+        imButtonStat42 = i.getBooleanExtra("app42",false);;
+        imButtonStat13 = i.getBooleanExtra("app13",false);;         //ButtonState for on off checking
+        imButtonStat23 = i.getBooleanExtra("app23",false);;
+        imButtonStat33 = i.getBooleanExtra("app33",false);;
+        imButtonStat43 = i.getBooleanExtra("app43",false);;
 
-
-    //=====================>>>>>>>>>nav header setup<<<<<<<<<<<<<<<<<<<<=======================
+        //=====================>>>>>>>>>nav header setup<<<<<<<<<<<<<<<<<<<<=======================
 
 
         SharedPreferences pref=getSharedPreferences("homepref",0);
@@ -126,8 +140,6 @@ public class MainActivity extends AppCompatActivity {
 
         seekbar1 = (SeekBar) findViewById(R.id.seekBar1);
         seekbar2 = (SeekBar) findViewById(R.id.seekBar2);
-
-
 
         roomim1.performClick();
         //-------------------------------Splash screen oncreate-------------------
@@ -322,9 +334,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //=======================>>>>>>>>>>>>>>>>app2<<<<<<<<<<<<<<<====================================
 
-        imageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 imageButton2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -369,8 +379,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-            }
-        });
 
 //========================>>>>>>>>>>>>>>>>>>>>>app3<<<<<<<<<<<<<<<<<===============================
         imageButton3.setOnClickListener(new View.OnClickListener() {
@@ -525,6 +533,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //================================>>>>>>>>>>>>getting intent values<<<<<<<<<<<<<<<===========
+
+
+
+
+        app11 = i.getBooleanExtra("app11",true);         //ButtonState for on off checking
+        app21 = i.getBooleanExtra("app21",false);
+        app31 = i.getBooleanExtra("app31",false);;
+        app41 = i.getBooleanExtra("app41",false);;
+        app12 = i.getBooleanExtra("app12",false);;         //ButtonState for on off checking
+        app22 = i.getBooleanExtra("app22",false);;
+        app32 = i.getBooleanExtra("app32",false);;
+        app42 = i.getBooleanExtra("app42",false);;
+        app13 = i.getBooleanExtra("app13",false);;         //ButtonState for on off checking
+        app23 = i.getBooleanExtra("app23",false);;
+        app33 = i.getBooleanExtra("app33",false);;
+        app43 = i.getBooleanExtra("app43",false);;
+
+
+
+
+        seeka1 = i.getIntExtra("seeka1",0);
+        seeka2 = i.getIntExtra("seeka2",0);
+        seeka3 = i.getIntExtra("seeka3",0);
+        seekb1 = i.getIntExtra("seekb1",0);
+        seekb2 = i.getIntExtra("seeka2",0);
+        seekb3 = i.getIntExtra("seekb3",0);
+
         //=======================>>>>>>>>>>>>>room1<<<<<<<<<<<<<<<<<<<<<<==================================
         roomim1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -534,21 +570,30 @@ public class MainActivity extends AppCompatActivity {
                 roomim2.setBackgroundColor(0xFF3eb291);
                 roomim3.setBackgroundColor(0xFF3eb291);
 
-                if(app11){appText1.setText("FAN ON" + "(" + seeka1 + "%)");
+                Toast.makeText(getApplicationContext(),String.valueOf(app11),Toast.LENGTH_LONG).show();
+
+                if(app11==true){appText1.setText("FAN ON" + "(" + seeka1 + "%)");
                 seekbar1.setProgress(seeka1);}
                 else{appText1.setText("FAN OFF");
                 seekbar1.setProgress(0);}
 
-                if(app21){appText2.setText("LIGHT ON");}
+                if(app21==true){appText2.setText("LIGHT ON");}
                 else{appText2.setText("LIGHT OFF");}
 
-                if(app31){appText3.setText("LIGHT ON");}
+                if(app31==true){appText3.setText("LIGHT ON");}
                 else{appText3.setText("LIGHT OFF");}
 
-                if(app41){appText4.setText("FAN ON" + "(" + seekb1 + "%)");
+                if(app41==true){appText4.setText("FAN ON" + "(" + seekb1 + "%)");
                 seekbar2.setProgress(seekb1);}
                 else{appText4.setText("FAN OFF");
                 seekbar2.setProgress(0);}
+
+
+                app11=imButtonStat11; app12=imButtonStat12; app13=imButtonStat13;
+                app21=imButtonStat21; app22=imButtonStat22; app23=imButtonStat23;
+                app31=imButtonStat31; app32=imButtonStat32; app33=imButtonStat33;
+                app41=imButtonStat41; app42=imButtonStat42; app43=imButtonStat43;
+
 
 
             }
@@ -606,8 +651,8 @@ public class MainActivity extends AppCompatActivity {
                 seekbar1.setProgress(0);}
             }
         });
-        roomim1.performClick();
 
+        roomim1.performClick();
 
     }
     //---------------------------------connectivity checking------------------
@@ -707,7 +752,7 @@ public class MainActivity extends AppCompatActivity {
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(15000 /* milliseconds */);
                 conn.setConnectTimeout(15000 /* milliseconds */);
-                conn.setRequestMethod("POST");
+                conn.setRequestMethod("GET");
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
                 OutputStream os = conn.getOutputStream();
