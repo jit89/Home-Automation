@@ -10,5 +10,5 @@
         android:text="TextView"
         android:textAlignment="center"
         android:textSize="30sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"/>
 </LinearLayout>
