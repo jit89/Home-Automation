@@ -33,11 +33,11 @@ public class login extends Activity {
                 String em=getEmail.getText().toString();
                 String nm=getName.getText().toString();
 
-                edit.putString("name",nm);
-                edit.putString("email",em);
+                edit.putString("user",nm);
+                edit.putString("pass",em);
                 edit.apply();
-                Log.e("sharedpref",pref.getString("name",null));
-                Intent i=new Intent(login.this,SplashActivity.class);
+                Log.e("sharedpref",pref.getString("user",null));
+                Intent i=new Intent(login.this,wifi_login.class);
                 startActivity(i);
                 finish();
             }

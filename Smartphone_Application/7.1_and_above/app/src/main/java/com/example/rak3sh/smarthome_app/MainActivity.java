@@ -38,7 +38,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity {
 
 
-    public String ur = "http://ptsv2.com/t/vbvn/post"; //<<<<<<---url here
+    public String ur = "http://phpexampl.000webhostapp.com/test.php?opt=y&pass=9733028233&dat="; //<<<<<<---url here
 
     //// TODO: 4/16/2018 onstart status changes
 
@@ -191,7 +191,8 @@ public class MainActivity extends AppCompatActivity {
                        break;
 
                    case R.id.three:
-                       Toast.makeText(getApplicationContext(),"Three",Toast.LENGTH_LONG).show();
+                        Intent x=new Intent(MainActivity.this,NewActivity.class);
+                        startActivity(x);
                        break;
                    case R.id.four:
                        finish();
@@ -713,40 +714,35 @@ public class MainActivity extends AppCompatActivity {
 
             try {
 
-                URL url = new URL(ur);
+
 
                 JSONObject postDataParams = new JSONObject();
-                if(room==1){
-                postDataParams.put("room1",1);
-                postDataParams.put("app1", app11);
-                postDataParams.put("app1a", seeka1 * (10.24));
-                postDataParams.put("app2", app21);
-                postDataParams.put("app3", app31);
-                postDataParams.put("app4", app41);
-                postDataParams.put("app4a",seekb1*10.24);
-                }
-                else if(room==2){
 
-                    postDataParams.put("room1",2);
-                    postDataParams.put("app1", app12);
-                    postDataParams.put("app1a", seeka2 * (10.24));
-                    postDataParams.put("app2", app22);
-                    postDataParams.put("app3", app32);
-                    postDataParams.put("app4", app42);
-                    postDataParams.put("app4a",seekb2*10.24);
-                }
-                else if(room==3){
+                postDataParams.put("app11",app11);
+                postDataParams.put("app21",app21);
+                postDataParams.put("app31",app31);
+                postDataParams.put("app41",app41);
+                postDataParams.put("app12",app12);
+                postDataParams.put("app22",app22);
+                postDataParams.put("app32",app32);
+                postDataParams.put("app42",app42);
+                postDataParams.put("app13",app13);
+                postDataParams.put("app23",app23);
+                postDataParams.put("app33",app33);
+                postDataParams.put("app43",app43);
+                postDataParams.put("seeka1",seeka1);
+                postDataParams.put("seekb1",seekb1);
+                postDataParams.put("seeka2",seeka2);
+                postDataParams.put("seekb2",seekb2);
+                postDataParams.put("seeka3",seeka3);
+                postDataParams.put("seekb3",seekb3);
 
-                    postDataParams.put("room1",3);
-                    postDataParams.put("app1", app13);
-                    postDataParams.put("app1a", seeka3 * (10.24));
-                    postDataParams.put("app2", app23);
-                    postDataParams.put("app3", app33);
-                    postDataParams.put("app4", app43);
-                    postDataParams.put("app4a",seekb3*10.24);
-                }
+
+
+
 
                 Log.e("params", postDataParams.toString());
+                URL url = new URL(ur+postDataParams.toString());
 
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -756,13 +752,6 @@ public class MainActivity extends AppCompatActivity {
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
                 OutputStream os = conn.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getPostDataString(postDataParams));
-
-                writer.flush();
-                writer.close();
-                os.close();
 
                 int responseCode = conn.getResponseCode();
 
