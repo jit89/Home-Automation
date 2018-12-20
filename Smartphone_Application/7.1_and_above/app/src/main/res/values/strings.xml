@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">"Smart "</string>
+    <string name="app_name">"HOME"</string>
     <string name="app1Text">Fan</string>
+    <string name="infoText">"Basic Home automation systems have been ghosting around in the market for quite some years without any significant growth in sales and awareness among the consumers. First of all, these overpriced systems are claimed to be "automation" systems whereas very little to no appliance automation and intelligence are incorporated.Advancement of assistive technologies are coupled with its seamless integration with the natural world. Here, in our proposed design we introduce an unique way of thinking and designing assistive home automation systems where the primary focus is on intuitive user experience and dynamic system behavior. This system will continuously observe the way home appliances are switched and regulated to predict their state in the "near" future. This retrofittable system preserves full manual control from the switch-boards as well as coming with a companion app with more assistive features.
+Project files are open sourced in our github repository. "</string>
 </resources>

@@ -9,18 +9,24 @@
 
         <item
             android:id="@+id/one"
-            android:title="CASE 1"
+            android:title="Credentials"
+            android:icon="@drawable/cred"
 
 
             />
         <item
             android:id="@+id/two"
-            android:title="CASE 2" />
+            android:title="Options"
+            android:icon="@drawable/menu_logo"/>
         <item
             android:id="@+id/three"
-            android:title="CASE 3" />
+            android:title="About us"
+            android:icon="@drawable/info_logo"/>
         <item
             android:id="@+id/four"
-            android:title="CASE 4" />
+            android:icon="@drawable/exit"
+            android:title="Exit"
+
+            />
     </group>
 </menu>

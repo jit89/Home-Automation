@@ -1,8 +1,9 @@
 package com.example.rak3sh.smarthome_app;
 
-import android.content.ClipData;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -17,7 +18,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,26 +38,28 @@ import javax.net.ssl.HttpsURLConnection;
 public class MainActivity extends AppCompatActivity {
 
 
-    public String ur = "http://ptsv2.com/t/vbvn/post"; //<<<<<<---url here
+    public String ur = "http://phpexampl.000webhostapp.com/test.php?opt=y&pass=9733028233&dat="; //<<<<<<---url here
 
     //// TODO: 4/16/2018 onstart status changes
 
 
-    boolean imButtonStat11 = false;         //ButtonState for on off checking
-    boolean imButtonStat21=false;
-    boolean imButtonStat31= false;
-    boolean imButtonStat41=false;
-    boolean imButtonStat12 = false;         //ButtonState for on off checking
-    boolean imButtonStat22=false;
-    boolean imButtonStat32= false;
-    boolean imButtonStat42=false;
-    boolean imButtonStat13 = false;         //ButtonState for on off checking
-    boolean imButtonStat23=false;
-    boolean imButtonStat33= false;
-    boolean imButtonStat43=false;
-    
 
-    boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33 = false,app43;         //bools for json
+    boolean imButtonStat11 = false;         //ButtonState for on off checking
+    boolean imButtonStat21 = false;
+    boolean imButtonStat31 = false;
+    boolean imButtonStat41 = false;
+    boolean imButtonStat12 = false;         //ButtonState for on off checking
+    boolean imButtonStat22 = false;
+    boolean imButtonStat32 = false;
+    boolean imButtonStat42 = false;
+    boolean imButtonStat13 = false;         //ButtonState for on off checking
+    boolean imButtonStat23 = false;
+    boolean imButtonStat33 = false;
+    boolean imButtonStat43 = false;
+
+
+
+    boolean app11, app21, app31, app41,app12,app22,app32,app42,app13,app23,app33,app43;         //bools for json
     int seeka1= 0;
     int seeka2=0;
     int seeka3=0;
@@ -73,18 +75,45 @@ public class MainActivity extends AppCompatActivity {
     TextView appText1,appText2,appText3,appText4;
     SeekBar seekbar1,seekbar2;
       DrawerLayout mdrawerLayout;
-
-
-
+      String UserName;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Intent i=getIntent();
+
+        imButtonStat11 = i.getBooleanExtra("app11",true);         //ButtonState for on off checking
+        imButtonStat21 = i.getBooleanExtra("app21",false);
+        imButtonStat31 = i.getBooleanExtra("app31",false);;
+        imButtonStat41 = i.getBooleanExtra("app41",false);;
+        imButtonStat12 = i.getBooleanExtra("app12",false);;         //ButtonState for on off checking
+        imButtonStat22 = i.getBooleanExtra("app22",false);;
+        imButtonStat32 = i.getBooleanExtra("app32",false);;
+        imButtonStat42 = i.getBooleanExtra("app42",false);;
+        imButtonStat13 = i.getBooleanExtra("app13",false);;         //ButtonState for on off checking
+        imButtonStat23 = i.getBooleanExtra("app23",false);;
+        imButtonStat33 = i.getBooleanExtra("app33",false);;
+        imButtonStat43 = i.getBooleanExtra("app43",false);;
+
+        //=====================>>>>>>>>>nav header setup<<<<<<<<<<<<<<<<<<<<=======================
 
 
+        SharedPreferences pref=getSharedPreferences("homepref",0);
+        UserName=pref.getString("name","Smart Home");
+
+       NavigationView navigationView=(NavigationView)findViewById(R.id.nav_view);
+       View hview=navigationView.getHeaderView(0);
+       TextView userName=(TextView) hview.findViewById(R.id.navHeaderText);
+
+
+        userName.setText(UserName);
+
+
+//================vars=============
 
 
         imageButton1 = (ImageButton) findViewById(R.id.imButton1);
@@ -106,15 +135,18 @@ public class MainActivity extends AppCompatActivity {
         appText3 = (TextView) findViewById(R.id.appText3);
         appText4 = (TextView) findViewById(R.id.appText4);
 
+
         //connectionCheckText = (TextView) findViewById(R.id.connectionCheckText);
 
         seekbar1 = (SeekBar) findViewById(R.id.seekBar1);
         seekbar2 = (SeekBar) findViewById(R.id.seekBar2);
 
-
-
-
         roomim1.performClick();
+        //-------------------------------Splash screen oncreate-------------------
+
+                        //created with splashActivity
+
+
 
         //============================>>>>>>>>>>>info<<<<<<<<<<<<<<<==============================
         infoButton.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +181,9 @@ public class MainActivity extends AppCompatActivity {
                switch(item.getItemId()){
                    case R.id.one:
                        Toast.makeText(getApplicationContext(),"one",Toast.LENGTH_LONG).show();
+                       Intent j=new Intent(MainActivity.this,login.class);
+                       startActivity(j);
+                       finish();
                        break;
 
                    case R.id.two:
@@ -156,11 +191,15 @@ public class MainActivity extends AppCompatActivity {
                        break;
 
                    case R.id.three:
-                       Toast.makeText(getApplicationContext(),"Three",Toast.LENGTH_LONG).show();
+                        Intent x=new Intent(MainActivity.this,NewActivity.class);
+                        startActivity(x);
                        break;
                    case R.id.four:
-                       Toast.makeText(getApplicationContext(),"Four",Toast.LENGTH_LONG).show();
-                       break;
+                       finish();
+                       Intent intent = new Intent(Intent.ACTION_MAIN);
+                       intent.addCategory(Intent.CATEGORY_HOME);
+                       intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                       startActivity(intent);
 
 
                }
@@ -296,9 +335,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //=======================>>>>>>>>>>>>>>>>app2<<<<<<<<<<<<<<<====================================
 
-        imageButton2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
                 imageButton2.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -343,8 +380,6 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-            }
-        });
 
 //========================>>>>>>>>>>>>>>>>>>>>>app3<<<<<<<<<<<<<<<<<===============================
         imageButton3.setOnClickListener(new View.OnClickListener() {
@@ -499,6 +534,34 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+        //================================>>>>>>>>>>>>getting intent values<<<<<<<<<<<<<<<===========
+
+
+
+
+        app11 = i.getBooleanExtra("app11",true);         //ButtonState for on off checking
+        app21 = i.getBooleanExtra("app21",false);
+        app31 = i.getBooleanExtra("app31",false);;
+        app41 = i.getBooleanExtra("app41",false);;
+        app12 = i.getBooleanExtra("app12",false);;         //ButtonState for on off checking
+        app22 = i.getBooleanExtra("app22",false);;
+        app32 = i.getBooleanExtra("app32",false);;
+        app42 = i.getBooleanExtra("app42",false);;
+        app13 = i.getBooleanExtra("app13",false);;         //ButtonState for on off checking
+        app23 = i.getBooleanExtra("app23",false);;
+        app33 = i.getBooleanExtra("app33",false);;
+        app43 = i.getBooleanExtra("app43",false);;
+
+
+
+
+        seeka1 = i.getIntExtra("seeka1",0);
+        seeka2 = i.getIntExtra("seeka2",0);
+        seeka3 = i.getIntExtra("seeka3",0);
+        seekb1 = i.getIntExtra("seekb1",0);
+        seekb2 = i.getIntExtra("seeka2",0);
+        seekb3 = i.getIntExtra("seekb3",0);
+
         //=======================>>>>>>>>>>>>>room1<<<<<<<<<<<<<<<<<<<<<<==================================
         roomim1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -508,21 +571,30 @@ public class MainActivity extends AppCompatActivity {
                 roomim2.setBackgroundColor(0xFF3eb291);
                 roomim3.setBackgroundColor(0xFF3eb291);
 
-                if(app11){appText1.setText("FAN ON" + "(" + seeka1 + "%)");
+                Toast.makeText(getApplicationContext(),String.valueOf(app11),Toast.LENGTH_LONG).show();
+
+                if(app11==true){appText1.setText("FAN ON" + "(" + seeka1 + "%)");
                 seekbar1.setProgress(seeka1);}
                 else{appText1.setText("FAN OFF");
                 seekbar1.setProgress(0);}
 
-                if(app21){appText2.setText("LIGHT ON");}
+                if(app21==true){appText2.setText("LIGHT ON");}
                 else{appText2.setText("LIGHT OFF");}
 
-                if(app31){appText3.setText("LIGHT ON");}
+                if(app31==true){appText3.setText("LIGHT ON");}
                 else{appText3.setText("LIGHT OFF");}
 
-                if(app41){appText4.setText("FAN ON" + "(" + seekb1 + "%)");
+                if(app41==true){appText4.setText("FAN ON" + "(" + seekb1 + "%)");
                 seekbar2.setProgress(seekb1);}
                 else{appText4.setText("FAN OFF");
                 seekbar2.setProgress(0);}
+
+
+                app11=imButtonStat11; app12=imButtonStat12; app13=imButtonStat13;
+                app21=imButtonStat21; app22=imButtonStat22; app23=imButtonStat23;
+                app31=imButtonStat31; app32=imButtonStat32; app33=imButtonStat33;
+                app41=imButtonStat41; app42=imButtonStat42; app43=imButtonStat43;
+
 
 
             }
@@ -580,8 +652,8 @@ public class MainActivity extends AppCompatActivity {
                 seekbar1.setProgress(0);}
             }
         });
-        roomim1.performClick();
 
+        roomim1.performClick();
 
     }
     //---------------------------------connectivity checking------------------
@@ -642,56 +714,44 @@ public class MainActivity extends AppCompatActivity {
 
             try {
 
-                URL url = new URL(ur);
+
 
                 JSONObject postDataParams = new JSONObject();
-                if(room==1){
-                postDataParams.put("room1",1);
-                postDataParams.put("app1", app11);
-                postDataParams.put("app1a", seeka1 * (10.24));
-                postDataParams.put("app2", app21);
-                postDataParams.put("app3", app31);
-                postDataParams.put("app4", app41);
-                postDataParams.put("app4a",seekb1*10.24);
-                }
-                else if(room==2){
 
-                    postDataParams.put("room1",2);
-                    postDataParams.put("app1", app12);
-                    postDataParams.put("app1a", seeka2 * (10.24));
-                    postDataParams.put("app2", app22);
-                    postDataParams.put("app3", app32);
-                    postDataParams.put("app4", app42);
-                    postDataParams.put("app4a",seekb2*10.24);
-                }
-                else if(room==3){
+                postDataParams.put("app11",app11);
+                postDataParams.put("app21",app21);
+                postDataParams.put("app31",app31);
+                postDataParams.put("app41",app41);
+                postDataParams.put("app12",app12);
+                postDataParams.put("app22",app22);
+                postDataParams.put("app32",app32);
+                postDataParams.put("app42",app42);
+                postDataParams.put("app13",app13);
+                postDataParams.put("app23",app23);
+                postDataParams.put("app33",app33);
+                postDataParams.put("app43",app43);
+                postDataParams.put("seeka1",seeka1);
+                postDataParams.put("seekb1",seekb1);
+                postDataParams.put("seeka2",seeka2);
+                postDataParams.put("seekb2",seekb2);
+                postDataParams.put("seeka3",seeka3);
+                postDataParams.put("seekb3",seekb3);
 
-                    postDataParams.put("room1",3);
-                    postDataParams.put("app1", app13);
-                    postDataParams.put("app1a", seeka3 * (10.24));
-                    postDataParams.put("app2", app23);
-                    postDataParams.put("app3", app33);
-                    postDataParams.put("app4", app43);
-                    postDataParams.put("app4a",seekb3*10.24);
-                }
+
+
+
 
                 Log.e("params", postDataParams.toString());
+                URL url = new URL(ur+postDataParams.toString());
 
 
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setReadTimeout(15000 /* milliseconds */);
                 conn.setConnectTimeout(15000 /* milliseconds */);
-                conn.setRequestMethod("POST");
+                conn.setRequestMethod("GET");
                 conn.setDoInput(true);
                 conn.setDoOutput(true);
                 OutputStream os = conn.getOutputStream();
-                BufferedWriter writer = new BufferedWriter(
-                        new OutputStreamWriter(os, "UTF-8"));
-                writer.write(getPostDataString(postDataParams));
-
-                writer.flush();
-                writer.close();
-                os.close();
 
                 int responseCode = conn.getResponseCode();
 
