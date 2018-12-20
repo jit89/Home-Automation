@@ -1,12 +1,18 @@
 import machine
 import utime
-from utils import Nointerrupts
 
 
 # noinspection SpellCheckingInspection
 class Device(object):
     """
     Device class for the appliances
+    :param: _input_pin
+    :type: machine.Pin object
+
+    :param: _output_pin
+    :type: machine.Pin object
+
+    :return: None
     """
 
     def __init__(self, _input_pin, _output_pin):
@@ -22,6 +28,8 @@ class Device(object):
             self._output_pin.init(mode=machine.Pin.OUT)
         else:
             raise TypeError("Expected argument 2 to be of type machine.Pin but got type {}".format(type(_output_pin)))
+
+        self.DEVICE_DATA_STORAGE_ADDRESS = 80
 
         self._data = bytearray(24 * 7)  # Represent 24 hours * 7 days as a contiguous block of bytes
 
@@ -62,7 +70,7 @@ class Device(object):
         """
         return self._data
 
-    def set_data(self, day, pos, value):
+    def set_data(self, day, hour, value):
         if not isinstance(value, int):
             raise TypeError("Expected argument type int but got type {}".format(type(value)))
 
@@ -72,7 +80,7 @@ class Device(object):
         if day > 6:
             raise IndexError("bytearray index out of range")
 
-        self._data[24 * day + pos] = value
+        self._data[24 * day + hour] = value
 
     def calibrate_stagnancy(self):
         """
@@ -80,10 +88,12 @@ class Device(object):
         :return: None
         """
 
+        #   utime.localtime()[3] = hour
         if utime.localtime()[3] != self.oldHour:
-            divfactor = 60
+            divfactor = 60.0  # A float
 
-            self.set_data(utime.localtime()[2], self.oldHour, int(self.on_time / divfactor) > 0.3)
+            #   utime.localtime()[6] = weekday
+            self.set_data(utime.localtime()[6], self.oldHour, int(self.on_time / divfactor > 0.3))
             self.oldHour = utime.localtime()[3]
             self.on_time = 0
 
@@ -104,7 +114,7 @@ class Device(object):
             raise TypeError(" Expected argument 2 to be of type machine.I2C but got type {}".format((type(memaddr))))
 
         with Nointerrupts:
-            i2c.writeto_mem(80, memaddr, self._data)
+            i2c.writeto_mem(self.DEVICE_DATA_STORAGE_ADDRESS, memaddr, self._data)
 
         return len(self._data)
 
@@ -123,4 +133,4 @@ class Device(object):
             raise TypeError(" Expected argument 2 to be of type machine.I2C but got type {}".format((type(memaddr))))
 
         with Nointerrupts:
-            i2c.readfrom_mem_into(80, memaddr, self._data)
+            i2c.readfrom_mem_into(self.DEVICE_DATA_STORAGE_ADDRESS, memaddr, self._data)

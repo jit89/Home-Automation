@@ -9,3 +9,10 @@ import gc
 # import webrepl
 # webrepl.start()
 gc.collect()
+
+import os
+
+os.chdir('Micropython')
+import main
+
+main.main()

@@ -1,8 +1,73 @@
+import socket
+
 import machine
 import utime
 
 
-class Timed(object):
+def load_data(device_list):
+    for i, device in enumerate(device_list):
+        device.load_from_mem(i2c, 24 * 7 * i)
+
+
+def save_data(device_list):
+    for i, device in enumerate(device_list):
+        device.save_to_mem(i2c, 24 * 7 * i)
+
+
+def station(sta, ap, ssid, password):
+    if ap.active():
+        ap.active(False)
+
+    if not sta.isconnected():
+        sta.active(True)
+        sta.connect(ssid, password)
+        while not sta.isconnected():
+            utime.sleep(1)
+
+    print('Connected to acces point')
+
+
+def access_point(sta, ap):
+    ssid, password = None, None
+    if sta.active():
+        sta.active(False)
+
+    ap.active(True)
+
+    ap.config(essid='Home-Automation', password='12345678')
+    print(ap.ifconfig())
+
+    utime.sleep(12)
+
+    addr = socket.getaddrinfo('192.168.4.1', 80)[0][-1]
+
+    s = socket.socket()
+    s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    s.bind(addr)
+    s.listen(5)
+
+    while True:
+        cl, addr = s.accept()
+        print('Client connected from', addr)
+
+        req = cl.recv(128)
+
+        req = req.decode().split()[1][1:]
+
+        if len(req) > 1:
+            index = req.find('?')
+            ssid, password = req[:index], req[index + 1:]
+            print(ssid, password)
+
+        # cl.send('HTTP/1.1 200 OK\r\n\r\n'.encode())
+        # cl.send(html.encode())
+
+        if ssid is not None and password is not None:
+            cl.close()
+            return ssid, password
+
+
+class timed_function(object):
     """
     Decorator class for executing a function after certain intervals
     """
@@ -10,8 +75,8 @@ class Timed(object):
     def __init__(self, interval):
         
         self.interval = interval
-        if not isinstance(interval, float) or not isinstance(interval, int):
-            raise TypeError("Expected argument to be of type int or float but got type {}".format(type(interval)))
+        if not isinstance(interval, int):
+            raise TypeError("Expected argument to be of type int but got type {}".format(type(interval)))
         self.start = utime.ticks_ms()
 
     def __call__(self, func, *args, **kwargs):
@@ -23,24 +88,15 @@ class Timed(object):
         return decorated_func
 
 
-class FM24CL16B(object):
-    """Driver class for FM24CL16B-G 2k x 8b FRAM
-    """
-
-    def __init__(self):
-        pass
-
-
-
-class Nointerrupts(object):
+class NoInterrupts(object):
     """Context manager class for writing time critical code
 
     """
 
-    def __enter__(self):
+    def __enter__(self, *args, **kwargs):
         self.state = machine.disable_irq()
 
-    def __exit__(self, *args):
+    def __exit__(self, *args, **kwargs):
         machine.enable_irq(self.state)
 
 
@@ -57,30 +113,18 @@ class GPIO(object):
         self.D8 = const(15)
 
 
-def rtc_init(ssid, password, rtc):
+def rtc_init(rtc, sta_if):
     """Initialises the rtc from ntp and sets it to IST (Indian Standard Time)
-
-    :param ssid: String
-    :param password: String
-    :return: None
     """
-
-    if not isinstance(ssid, str) and not isinstance(password, str):
-        raise TypeError("Expected arguments to be of type str but got type {} {} ".format(type(ssid)), type(password))
 
     if not isinstance(rtc, machine.RTC):
         raise TypeError("Expected argument 3 to be of type machine.RTC but got type {}".format(type(rtc)))
 
-    import network, ntptime
+    import ntptime
     num_trials = 0
     rtc_set = False
 
-    sta_if = network.WLAN(network.STA_IF)
-    if not sta_if.isconnected():
-        sta_if.active(True)
-        sta_if.connect(ssid, password)
-        while not sta_if.isconnected():
-            utime.sleep(1)
+    # sta_if = network.WLAN(network.STA_IF)
 
     while not rtc_set:
 
